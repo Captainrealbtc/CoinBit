@@ -16,18 +16,22 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [21x, 22x, 23x, 24x]
+        node-version: '24.x'
+        -name: install dependencies
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
+    
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
-      env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+- uses: actions/checkout@v4
+- name: Use Node.js
+  uses: actions/setup-node@v4
+  with:
+    always-auth: true
+    node-version: '24.x'
+    registry-url: https://registry.npmjs.org
+    scope: '@octocat'
+- name: Install dependencies
+  run: npm ci
+  env:
+    NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
