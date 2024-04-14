@@ -37,7 +37,7 @@ const Footer = () => {
                 </div>
                 </span>
             </div>
-            <p className='flex items-center max-[450px]:text-[13px]'><AiOutlineCopyright /> 2024 &coinbit. All rights reserved</p>
+            <p className='flex items-center max-[450px]:text-[13px]'><AiOutlineCopyright /> 2024 CoinBit. All rights reserved</p>
         </div>
        
      );
